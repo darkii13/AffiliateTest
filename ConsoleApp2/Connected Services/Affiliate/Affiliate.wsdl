@@ -1,0 +1,1324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://ws.tradetracker.com/soap/affiliate" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="Affiliate" targetNamespace="https://ws.tradetracker.com/soap/affiliate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="https://ws.tradetracker.com/soap/affiliate">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:simpleType name="Locale">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="nl_BE" />
+          <xsd:enumeration value="fr_BE" />
+          <xsd:enumeration value="cs_CZ" />
+          <xsd:enumeration value="da_DK" />
+          <xsd:enumeration value="de_DE" />
+          <xsd:enumeration value="et_EE" />
+          <xsd:enumeration value="en_GB" />
+          <xsd:enumeration value="es_ES" />
+          <xsd:enumeration value="fr_FR" />
+          <xsd:enumeration value="it_IT" />
+          <xsd:enumeration value="hu_HU" />
+          <xsd:enumeration value="nl_NL" />
+          <xsd:enumeration value="nb_NO" />
+          <xsd:enumeration value="de_AT" />
+          <xsd:enumeration value="pl_PL" />
+          <xsd:enumeration value="fi_FI" />
+          <xsd:enumeration value="sv_SE" />
+          <xsd:enumeration value="ru_RU" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="AffiliateSites">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:AffiliateSite[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSite">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="URL" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="info" nillable="true" type="tns:AffiliateSiteInfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteInfo">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="type" type="tns:AffiliateSiteType" />
+          <xsd:element maxOccurs="1" name="category" type="tns:AffiliateSiteCategory" />
+          <xsd:element maxOccurs="1" name="description" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="creationDate" type="xsd:date" />
+          <xsd:element maxOccurs="1" name="status" type="tns:AffiliateSiteStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteTypes">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:AffiliateSiteType[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteCategories">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:AffiliateSiteCategory[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteCategory">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="AffiliateSiteStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="pending" />
+          <xsd:enumeration value="accepted" />
+          <xsd:enumeration value="rejected" />
+          <xsd:enumeration value="onhold" />
+          <xsd:enumeration value="signedout" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Campaigns">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:Campaign[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Campaign">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="URL" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="info" nillable="true" type="tns:CampaignInfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignInfo">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="category" type="tns:CampaignCategory" />
+          <xsd:element maxOccurs="1" name="subCategories" nillable="true" type="tns:CampaignSubCategories" />
+          <xsd:element maxOccurs="1" name="campaignDescription" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="shopDescription" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="targetGroup" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="characteristics" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="imageURL" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="trackingURL" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="commission" type="tns:CampaignCommission" />
+          <xsd:element maxOccurs="1" name="assignmentStatus" type="tns:CampaignAssignmentStatus" />
+          <xsd:element maxOccurs="1" name="startDate" type="xsd:date" />
+          <xsd:element maxOccurs="1" name="stopDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="clickToConversion" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="policySearchEngineMarketingStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyEmailMarketingStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyCashbackStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyDiscountCodeStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="deeplinkingSupported" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="referencesSupported" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="leadMaximumAssessmentInterval" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="leadAverageAssessmentInterval" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="saleMaximumAssessmentInterval" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="saleAverageAssessmentInterval" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="attributionModelLead" type="tns:CampaignAttributionModel" />
+          <xsd:element maxOccurs="1" name="attributionModelSales" type="tns:CampaignAttributionModel" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="CampaignAttributionModel">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="classic" />
+          <xsd:enumeration value="lastTouchpoint" />
+          <xsd:enumeration value="firstTouchpoint" />
+          <xsd:enumeration value="linear" />
+          <xsd:enumeration value="timeDecay" />
+          <xsd:enumeration value="positionBased" />
+          <xsd:enumeration value="custom" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="CampaignCategories">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:CampaignCategory[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignCategory">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="categories" nillable="true" type="tns:CampaignCategories" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignSubCategories">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:CampaignSubCategory[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignSubCategory">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignProduct">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignCommission">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="impressionCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="clickCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="fixedCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="leadCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="saleCommissionFixed" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="saleCommissionVariable" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iLeadCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iSaleCommissionFixed" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iSaleCommissionVariable" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="CampaignAssignmentStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="notsignedup" />
+          <xsd:enumeration value="pending" />
+          <xsd:enumeration value="accepted" />
+          <xsd:enumeration value="rejected" />
+          <xsd:enumeration value="onhold" />
+          <xsd:enumeration value="signedout" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="CampaignSubscriptionAction">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="subscribe" />
+          <xsd:enumeration value="unsubscribe" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="CampaignCommissionExtended">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="impressionCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="clickCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="fixedCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="products" type="tns:CampaignCommissionProducts" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignCommissionProducts">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:CampaignCommissionProduct[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignCommissionProduct">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="campaignProduct" type="tns:CampaignProduct" />
+          <xsd:element maxOccurs="1" name="leadCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="saleCommissionFixed" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="saleCommissionVariable" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iLeadCommission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iSaleCommissionFixed" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="iSaleCommissionVariable" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="guaranteedCommissionLead" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="guaranteedCommissionSalesVariable" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="guaranteedCommissionSalesFixed" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="CampaignAffiliatePolicyStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="allowed" />
+          <xsd:enumeration value="limited" />
+          <xsd:enumeration value="disallowed" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="CampaignNewsItems">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:CampaignNewsItem[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignNewsItem">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="campaignNewsType" type="tns:CampaignNewsType" />
+          <xsd:element maxOccurs="1" name="title" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="content" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="publishDate" type="xsd:date" />
+          <xsd:element maxOccurs="1" name="expirationDate" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="CampaignNewsType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="campaign_start" />
+          <xsd:enumeration value="campaign_stop" />
+          <xsd:enumeration value="campaign_update_general" />
+          <xsd:enumeration value="campaign_update_vouchercode" />
+          <xsd:enumeration value="campaign_update_consumer" />
+          <xsd:enumeration value="campaign_update_commission" />
+          <xsd:enumeration value="campaign_update_incentive" />
+          <xsd:enumeration value="campaign_update_material" />
+          <xsd:enumeration value="campaign_update_feed" />
+          <xsd:enumeration value="campaign_update_urgent" />
+          <xsd:enumeration value="campaign_update_attribution" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="MaterialBannerDimensions">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:MaterialBannerDimension[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MaterialBannerDimension">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="width" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="height" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="isCommon" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="isMobile" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MaterialItems">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:MaterialItem[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MaterialItem">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="creationDate" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="modificationDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="materialBannerDimension" nillable="true" type="tns:MaterialBannerDimension" />
+          <xsd:element maxOccurs="1" name="referenceSupported" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="description" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="conditions" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="validFromDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="validToDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="discountFixed" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="discountVariable" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="voucherCode" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="code" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="MaterialOutputType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="html" />
+          <xsd:enumeration value="javascript" />
+          <xsd:enumeration value="iframe" />
+          <xsd:enumeration value="popup" />
+          <xsd:enumeration value="popunder" />
+          <xsd:enumeration value="rss" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ClickTransactions">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:ClickTransaction[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ClickTransaction">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="reference" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="transactionType" type="tns:TransactionType" />
+          <xsd:element maxOccurs="1" name="transactionStatus" type="tns:TransactionStatus" />
+          <xsd:element maxOccurs="1" name="currency" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="commission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="registrationDate" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="refererURL" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="paidOut" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConversionTransactions">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:ConversionTransaction[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConversionTransaction">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="campaignProduct" type="tns:CampaignProduct" />
+          <xsd:element maxOccurs="1" name="reference" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="transactionType" type="tns:TransactionType" />
+          <xsd:element maxOccurs="1" name="transactionStatus" type="tns:TransactionStatus" />
+          <xsd:element maxOccurs="1" name="numTouchPointsTotal" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="numTouchPointsAttributed" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="attributableCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="description" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="currency" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="commission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="orderAmount" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="IP" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="registrationDate" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="assessmentDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="clickToConversion" nillable="true" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="originatingClickDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="rejectionReason" nillable="true" type="tns:TransactionRejectionReason" />
+          <xsd:element maxOccurs="1" name="paidOut" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="countryCode" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="attributionModel" type="tns:CampaignAttributionModel" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="TransactionType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="click" />
+          <xsd:enumeration value="lead" />
+          <xsd:enumeration value="sale" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="TransactionStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="pending" />
+          <xsd:enumeration value="accepted" />
+          <xsd:enumeration value="rejected" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="TransactionRejectionReason">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="returned_goods" />
+          <xsd:enumeration value="out_of_stock" />
+          <xsd:enumeration value="payment_not_received" />
+          <xsd:enumeration value="invalid_transaction" />
+          <xsd:enumeration value="order_canceled" />
+          <xsd:enumeration value="duplicate_order" />
+          <xsd:enumeration value="test_transaction" />
+          <xsd:enumeration value="attributed_to_other_channel" />
+          <xsd:enumeration value="violates_campaign_terms" />
+          <xsd:enumeration value="invalid_customer_details" />
+          <xsd:enumeration value="customer_unreachable" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ReportData">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="overallImpressionCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="uniqueImpressionCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="impressionCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="overallClickCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="uniqueClickCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="clickCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="leadCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="leadCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="saleCount" nillable="true" type="xsd:integer" />
+          <xsd:element maxOccurs="1" name="saleCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="fixedCommission" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="CTR" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="CLR" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="CSR" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="eCPM" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="EPC" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="totalCommission" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReportCampaign">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:ReportCampaignElement[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ReportCampaignElement">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="reportData" type="tns:ReportData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReportReference">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:ReportReferenceElement[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ReportReferenceElement">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="reference" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="reportData" type="tns:ReportData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Feeds">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:Feed[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Feed">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaign" type="tns:Campaign" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="URL" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="updateDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="updateInterval" type="xsd:duration" />
+          <xsd:element maxOccurs="1" name="productCount" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="assignmentStatus" type="tns:CampaignAssignmentStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedCategories">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:FeedCategory[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="FeedCategory">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="productCount" type="xsd:nonNegativeInteger" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedProducts">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:FeedProduct[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="FeedProduct">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="identifier" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="productCategoryName" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="description" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="price" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="productURL" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="imageURL" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="additional" type="tns:FeedProductAdditional" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedProductAdditional">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:FeedProductAdditionalElement[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="FeedProductAdditionalElement">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="name" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Payments">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:Payment[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Payment">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="invoiceNumber" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="currency" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="subTotal" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="VAT" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="endTotal" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="billDate" type="xsd:date" />
+          <xsd:element maxOccurs="1" name="payDate" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AffiliateSiteFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="query" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="affiliateSiteCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="affiliateSiteTypeID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="affiliateSiteStatus" nillable="true" type="tns:AffiliateSiteStatus" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="sort" nillable="true" type="tns:AffiliateSiteSort" />
+          <xsd:element maxOccurs="1" name="sortDirection" nillable="true" type="tns:SortDirection" />
+          <xsd:element maxOccurs="1" name="excludeInfo" nillable="true" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="query" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaignCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="assignmentStatus" nillable="true" type="tns:CampaignAssignmentStatus" />
+          <xsd:element maxOccurs="1" name="policySearchEngineMarketingStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyEmailMarketingStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyCashbackStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="policyDiscountCodeStatus" nillable="true" type="tns:CampaignAffiliatePolicyStatus" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="sort" nillable="true" type="tns:CampaignSort" />
+          <xsd:element maxOccurs="1" name="sortDirection" nillable="true" type="tns:SortDirection" />
+          <xsd:element maxOccurs="1" name="excludeInfo" nillable="true" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CampaignNewsItemFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="query" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaignCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignNewsType" nillable="true" type="tns:CampaignNewsType" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MaterialItemFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="query" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaignID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="includeUnsubscribedCampaigns" nillable="true" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="materialBannerDimensionID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="reference" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="sort" nillable="true" type="tns:MaterialItemSort" />
+          <xsd:element maxOccurs="1" name="sortDirection" nillable="true" type="tns:SortDirection" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClickTransactionFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="transactionStatus" nillable="true" type="tns:TransactionStatus" />
+          <xsd:element maxOccurs="1" name="registrationDateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="registrationDateTo" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="reference" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConversionTransactionFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="transactionType" nillable="true" type="tns:TransactionType" />
+          <xsd:element maxOccurs="1" name="transactionStatus" nillable="true" type="tns:TransactionStatus" />
+          <xsd:element maxOccurs="1" name="registrationDateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="registrationDateTo" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="assessmentDateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="assessmentDateTo" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="reference" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="sort" nillable="true" type="tns:TransactionConversionSort" />
+          <xsd:element maxOccurs="1" name="sortDirection" nillable="true" type="tns:SortDirection" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReportAffiliateSiteFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="dateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="dateTo" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReportCampaignFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="campaignID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="dateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="dateTo" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReportReferenceFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="reference" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaignID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="dateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="dateTo" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="ID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="assignmentStatus" nillable="true" type="tns:CampaignAssignmentStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedProductFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="feedID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="feedCategoryName" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="campaignID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignCategoryID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="query" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="priceFrom" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="priceTo" nillable="true" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="limit" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="offset" nillable="true" type="xsd:nonNegativeInteger" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PaymentFilter">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="billDateFrom" nillable="true" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="billDateTo" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CreateConversionTransactionOptions">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="campaignID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="campaignProductID" nillable="true" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="characteristic" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="remarks" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="reference" nillable="true" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="transactionAmount" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SortDirection">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ascending" />
+          <xsd:enumeration value="descending" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="AffiliateSiteSort">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ID" />
+          <xsd:enumeration value="name" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="CampaignSort">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ID" />
+          <xsd:enumeration value="name" />
+          <xsd:enumeration value="startDate" />
+          <xsd:enumeration value="stopDate" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="MaterialItemSort">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ID" />
+          <xsd:enumeration value="creationDate" />
+          <xsd:enumeration value="modificationDate" />
+          <xsd:enumeration value="campaignName" />
+          <xsd:enumeration value="elementSize" />
+          <xsd:enumeration value="linkText" />
+          <xsd:enumeration value="title" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="TransactionConversionSort">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ID" />
+          <xsd:enumeration value="assessmentDate" />
+          <xsd:enumeration value="registrationDate" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Attributions">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="affiliateSites" type="tns:Attribution" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Attribution">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:AttributedAffiliateSite[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AttributedAffiliateSite">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="commission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="position" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="IP" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="transactionType" type="tns:TransactionType" />
+          <xsd:element maxOccurs="1" name="transactionStatus" type="tns:TransactionStatus" />
+          <xsd:element maxOccurs="1" name="reference" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="registrationDate" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Touchpoints">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:Touchpoint[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Touchpoint">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="siteType" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="registrationDate" type="xsd:dateTime" />
+          <xsd:element maxOccurs="1" name="numImpressions" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="numClicks" type="xsd:nonNegativeInteger" />
+          <xsd:element maxOccurs="1" name="isAttributed" type="xsd:boolean" />
+          <xsd:element maxOccurs="1" name="commission" type="xsd:decimal" />
+          <xsd:element maxOccurs="1" name="position" type="xsd:string" />
+          <xsd:element maxOccurs="1" name="reference" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthenticateMessage">
+    <wsdl:part name="customerID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="passphrase" type="xsd:string" />
+    <wsdl:part name="sandbox" type="xsd:boolean" />
+    <wsdl:part name="locale" type="tns:Locale" />
+    <wsdl:part name="demo" type="xsd:boolean" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateResponseMessage" />
+  <wsdl:message name="GetAffiliateSitesMessage">
+    <wsdl:part name="options" type="tns:AffiliateSiteFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetAffiliateSitesResponseMessage">
+    <wsdl:part name="affiliateSites" type="tns:AffiliateSites" />
+  </wsdl:message>
+  <wsdl:message name="GetAffiliateSiteTypesMessage" />
+  <wsdl:message name="GetAffiliateSiteTypesResponseMessage">
+    <wsdl:part name="affiliateSiteTypes" type="tns:AffiliateSiteTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetAffiliateSiteCategoriesMessage" />
+  <wsdl:message name="GetAffiliateSiteCategoriesResponseMessage">
+    <wsdl:part name="affiliateSiteCategories" type="tns:AffiliateSiteCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:CampaignFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignsResponseMessage">
+    <wsdl:part name="campaigns" type="tns:Campaigns" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignCategoriesMessage" />
+  <wsdl:message name="GetCampaignCategoriesResponseMessage">
+    <wsdl:part name="campaignCategories" type="tns:CampaignCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignCommissionExtendedMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="campaignID" type="xsd:nonNegativeInteger" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignCommissionExtendedResponseMessage">
+    <wsdl:part name="campaignCommissionExtended" type="tns:CampaignCommissionExtended" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCampaignSubscriptionMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="campaignID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="subscriptionAction" type="tns:CampaignSubscriptionAction" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCampaignSubscriptionResponseMessage" />
+  <wsdl:message name="GetCampaignNewsItemsMessage">
+    <wsdl:part name="options" type="tns:CampaignNewsItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignNewsItemsResponseMessage">
+    <wsdl:part name="campaignNewsItems" type="tns:CampaignNewsItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialBannerDimensionsMessage" />
+  <wsdl:message name="GetMaterialBannerDimensionsResponseMessage">
+    <wsdl:part name="materialBannerDimensions" type="tns:MaterialBannerDimensions" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialBannerImageItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialBannerImageItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialBannerFlashItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialBannerFlashItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialTextItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialTextItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialHTMLItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialHTMLItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialIncentiveVoucherItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialIncentiveVoucherItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialIncentiveOfferItemsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="materialOutputType" type="tns:MaterialOutputType" />
+    <wsdl:part name="options" type="tns:MaterialItemFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetMaterialIncentiveOfferItemsResponseMessage">
+    <wsdl:part name="materialItems" type="tns:MaterialItems" />
+  </wsdl:message>
+  <wsdl:message name="GetClickTransactionsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:ClickTransactionFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetClickTransactionsResponseMessage">
+    <wsdl:part name="clickTransactions" type="tns:ClickTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetConversionTransactionsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:ConversionTransactionFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetConversionTransactionsResponseMessage">
+    <wsdl:part name="conversionTransactions" type="tns:ConversionTransactions" />
+  </wsdl:message>
+  <wsdl:message name="CreateConversionTransactionMessage">
+    <wsdl:part name="transactionType" type="tns:TransactionType" />
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:CreateConversionTransactionOptions" />
+  </wsdl:message>
+  <wsdl:message name="CreateConversionTransactionResponseMessage">
+    <wsdl:part name="transactionID" type="xsd:nonNegativeInteger" />
+  </wsdl:message>
+  <wsdl:message name="GetReportAffiliateSiteMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:ReportAffiliateSiteFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetReportAffiliateSiteResponseMessage">
+    <wsdl:part name="reportAffiliateSite" type="tns:ReportData" />
+  </wsdl:message>
+  <wsdl:message name="GetReportCampaignMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:ReportCampaignFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetReportCampaignResponseMessage">
+    <wsdl:part name="reportCampaign" type="tns:ReportCampaign" />
+  </wsdl:message>
+  <wsdl:message name="GetReportReferenceMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:ReportReferenceFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetReportReferenceResponseMessage">
+    <wsdl:part name="reportReference" type="tns:ReportReference" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:FeedFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedsResponseMessage">
+    <wsdl:part name="feeds" type="tns:Feeds" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedProductCategoriesMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="feedID" type="xsd:nonNegativeInteger" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedProductCategoriesResponseMessage">
+    <wsdl:part name="feedCategories" type="tns:FeedCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedProductsMessage">
+    <wsdl:part name="affiliateSiteID" type="xsd:nonNegativeInteger" />
+    <wsdl:part name="options" type="tns:FeedProductFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetFeedProductsResponseMessage">
+    <wsdl:part name="feedProducts" type="tns:FeedProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsMessage">
+    <wsdl:part name="options" type="tns:PaymentFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResponseMessage">
+    <wsdl:part name="payments" type="tns:Payments" />
+  </wsdl:message>
+  <wsdl:message name="GetAttributionsMessage">
+    <wsdl:part name="conversionTransactionID" type="xsd:nonNegativeInteger" />
+  </wsdl:message>
+  <wsdl:message name="GetAttributionsResponseMessage">
+    <wsdl:part name="attributions" type="tns:Attributions" />
+  </wsdl:message>
+  <wsdl:message name="GetTouchpointsMessage">
+    <wsdl:part name="conversionTransactionID" type="xsd:nonNegativeInteger" />
+  </wsdl:message>
+  <wsdl:message name="GetTouchpointsResponseMessage">
+    <wsdl:part name="touchpoints" type="tns:Touchpoints" />
+  </wsdl:message>
+  <wsdl:portType name="AffiliateInterface">
+    <wsdl:operation name="authenticate">
+      <wsdl:input message="tns:AuthenticateMessage" />
+      <wsdl:output message="tns:AuthenticateResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSites">
+      <wsdl:input message="tns:GetAffiliateSitesMessage" />
+      <wsdl:output message="tns:GetAffiliateSitesResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSiteTypes">
+      <wsdl:input message="tns:GetAffiliateSiteTypesMessage" />
+      <wsdl:output message="tns:GetAffiliateSiteTypesResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSiteCategories">
+      <wsdl:input message="tns:GetAffiliateSiteCategoriesMessage" />
+      <wsdl:output message="tns:GetAffiliateSiteCategoriesResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCampaigns">
+      <wsdl:input message="tns:GetCampaignsMessage" />
+      <wsdl:output message="tns:GetCampaignsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignCategories">
+      <wsdl:input message="tns:GetCampaignCategoriesMessage" />
+      <wsdl:output message="tns:GetCampaignCategoriesResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignCommissionExtended">
+      <wsdl:input message="tns:GetCampaignCommissionExtendedMessage" />
+      <wsdl:output message="tns:GetCampaignCommissionExtendedResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="changeCampaignSubscription">
+      <wsdl:input message="tns:ChangeCampaignSubscriptionMessage" />
+      <wsdl:output message="tns:ChangeCampaignSubscriptionResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignNewsItems">
+      <wsdl:input message="tns:GetCampaignNewsItemsMessage" />
+      <wsdl:output message="tns:GetCampaignNewsItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerDimensions">
+      <wsdl:input message="tns:GetMaterialBannerDimensionsMessage" />
+      <wsdl:output message="tns:GetMaterialBannerDimensionsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerImageItems">
+      <wsdl:input message="tns:GetMaterialBannerImageItemsMessage" />
+      <wsdl:output message="tns:GetMaterialBannerImageItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerFlashItems">
+      <wsdl:input message="tns:GetMaterialBannerFlashItemsMessage" />
+      <wsdl:output message="tns:GetMaterialBannerFlashItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialTextItems">
+      <wsdl:input message="tns:GetMaterialTextItemsMessage" />
+      <wsdl:output message="tns:GetMaterialTextItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialHTMLItems">
+      <wsdl:input message="tns:GetMaterialHTMLItemsMessage" />
+      <wsdl:output message="tns:GetMaterialHTMLItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialIncentiveVoucherItems">
+      <wsdl:input message="tns:GetMaterialIncentiveVoucherItemsMessage" />
+      <wsdl:output message="tns:GetMaterialIncentiveVoucherItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialIncentiveOfferItems">
+      <wsdl:input message="tns:GetMaterialIncentiveOfferItemsMessage" />
+      <wsdl:output message="tns:GetMaterialIncentiveOfferItemsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getClickTransactions">
+      <wsdl:input message="tns:GetClickTransactionsMessage" />
+      <wsdl:output message="tns:GetClickTransactionsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getConversionTransactions">
+      <wsdl:input message="tns:GetConversionTransactionsMessage" />
+      <wsdl:output message="tns:GetConversionTransactionsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createConversionTransaction">
+      <wsdl:input message="tns:CreateConversionTransactionMessage" />
+      <wsdl:output message="tns:CreateConversionTransactionResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getReportAffiliateSite">
+      <wsdl:input message="tns:GetReportAffiliateSiteMessage" />
+      <wsdl:output message="tns:GetReportAffiliateSiteResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getReportCampaign">
+      <wsdl:input message="tns:GetReportCampaignMessage" />
+      <wsdl:output message="tns:GetReportCampaignResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getReportReference">
+      <wsdl:input message="tns:GetReportReferenceMessage" />
+      <wsdl:output message="tns:GetReportReferenceResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFeeds">
+      <wsdl:input message="tns:GetFeedsMessage" />
+      <wsdl:output message="tns:GetFeedsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFeedProductCategories">
+      <wsdl:input message="tns:GetFeedProductCategoriesMessage" />
+      <wsdl:output message="tns:GetFeedProductCategoriesResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFeedProducts">
+      <wsdl:input message="tns:GetFeedProductsMessage" />
+      <wsdl:output message="tns:GetFeedProductsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPayments">
+      <wsdl:input message="tns:GetPaymentsMessage" />
+      <wsdl:output message="tns:GetPaymentsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttributions">
+      <wsdl:input message="tns:GetAttributionsMessage" />
+      <wsdl:output message="tns:GetAttributionsResponseMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTouchpoints">
+      <wsdl:input message="tns:GetTouchpointsMessage" />
+      <wsdl:output message="tns:GetTouchpointsResponseMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AffiliateBinding" type="tns:AffiliateInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/authenticate" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSites">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getAffiliateSites" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSiteTypes">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getAffiliateSiteTypes" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAffiliateSiteCategories">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getAffiliateSiteCategories" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaigns">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getCampaigns" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignCategories">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getCampaignCategories" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignCommissionExtended">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getCampaignCommissionExtended" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeCampaignSubscription">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/changeCampaignSubscription" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCampaignNewsItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getCampaignNewsItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerDimensions">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialBannerDimensions" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerImageItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialBannerImageItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialBannerFlashItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialBannerFlashItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialTextItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialTextItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialHTMLItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialHTMLItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialIncentiveVoucherItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialIncentiveVoucherItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialIncentiveOfferItems">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getMaterialIncentiveOfferItems" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getClickTransactions">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getClickTransactions" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConversionTransactions">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getConversionTransactions" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createConversionTransaction">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/createConversionTransaction" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReportAffiliateSite">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getReportAffiliateSite" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReportCampaign">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getReportCampaign" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReportReference">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getReportReference" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFeeds">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getFeeds" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFeedProductCategories">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getFeedProductCategories" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFeedProducts">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getFeedProducts" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPayments">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getPayments" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttributions">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getAttributions" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTouchpoints">
+      <soap:operation soapAction="https://ws.tradetracker.com/soap/affiliate/getTouchpoints" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="https://ws.tradetracker.com/soap/affiliate" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AffiliateService">
+    <wsdl:port name="AffiliateBinding" binding="tns:AffiliateBinding">
+      <soap:address location="https://ws.tradetracker.com/soap/affiliate" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
